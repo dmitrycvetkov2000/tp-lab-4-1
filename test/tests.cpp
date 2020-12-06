@@ -27,7 +27,7 @@ TEST_F(AutomataTest, init)
   };
   EXPECT_EQ(instance.getState(), STATES::OFF);
   const auto menu = instance.getMenu();
-  for (const size_t i = 0; i < menu.size(); ++i)
+  for (size_t i = 0; i < menu.size(); ++i)
   {
     ASSERT_EQ(menu[i].first, expectedMenu[i]);
     ASSERT_EQ(menu[i].second, expectedPrices[i]);
@@ -56,7 +56,7 @@ TEST_F(AutomataTest, choice)
 TEST_F(AutomataTest, accept)
 {
   instance.on();
-  instance.getBalance(0);
+  ASSERT_EQ(instance.getBalance(), 0);
   instance.coin(10);
   ASSERT_EQ(instance.getBalance(), 10);
   ASSERT_EQ(instance.getState(), STATES::ACCEPT);
@@ -75,13 +75,13 @@ TEST_F(AutomataTest, check)
   instance.choice(3);
   ASSERT_FALSE(instance.check());
   ASSERT_EQ(instance.getState(), STATES::ACCEPT);
-  instance.getBalance(30);
+  ASSERT_EQ(instance.getBalance(), 30);
 
   instance.coin(20);
   instance.choice(3);
   ASSERT_TRUE(instance.check());
   ASSERT_EQ(instance.getState(), STATES::ACCEPT);
-  instance.getBalance(50);
+  ASSERT_EQ(instance.getBalance(), 50);
 
   instance.cancel();
   ASSERT_EQ(instance.getState(), STATES::WAIT);
@@ -96,7 +96,7 @@ TEST_F(AutomataTest, cook_and_finish)
   ASSERT_EQ(instance.check(), 60);
   ASSERT_EQ(instance.getState(), STATES::READY);
   instance.cook();
-  instance.getBalance(10);
+  ASSERT_EQ(instance.getBalance(), 10);
   instance.finish();
   ASSERT_EQ(instance.getState(), STATES::WAIT);
   ASSERT_EQ(instance.getBalance(), 0);
