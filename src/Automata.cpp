@@ -81,12 +81,15 @@ size_t Automata::getCurrentChoice() const
 
 bool Automata::check()
 {
-  if (state == STATES::CHECK)
+  if (state == STATES::CHECK || state == STATES::ACCEPT)
+  {
+    state = STATES::CHECK;
     if (cash >= prices[currentChoice])
     {
       state = STATES::READY;
       return true;
     }
+  }
   return false;
 }
 
