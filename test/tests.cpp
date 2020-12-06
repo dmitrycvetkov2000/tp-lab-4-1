@@ -80,7 +80,7 @@ TEST_F(AutomataTest, check)
   instance.coin(20);
   instance.choice(3);
   ASSERT_TRUE(instance.check());
-  ASSERT_EQ(instance.getState(), STATES::CHECK);
+  ASSERT_EQ(instance.getState(), STATES::READY);
   ASSERT_EQ(instance.getBalance(), 50);
 
   instance.cancel();
