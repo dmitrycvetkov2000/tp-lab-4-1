@@ -26,8 +26,12 @@ TEST_F(AutomataTest, init)
     40,
   };
   EXPECT_EQ(instance.getState(), STATES::OFF);
-  ASSERT_EQ(instance.getMenu(), expectedMenu);
-  ASSERT_EQ(instance.getPrices(), expectedPrices);
+  const auto menu = instance.getMenu();
+  for (const size_t i = 0; i < menu.size(); ++i)
+  {
+    ASSERT_EQ(menu[i].first, expectedMenu[i]);
+    ASSERT_EQ(menu[i].second, expectedPrices[i]);
+  }
 }
 
 TEST_F(AutomataTest, on_off)
