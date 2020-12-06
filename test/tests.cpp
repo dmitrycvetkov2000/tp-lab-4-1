@@ -74,7 +74,7 @@ TEST_F(AutomataTest, check)
   instance.coin(30);
   instance.choice(3);
   ASSERT_FALSE(instance.check());
-  ASSERT_EQ(instance.getState(), STATES::ACCEPT);
+  ASSERT_EQ(instance.getState(), STATES::CHECK);
   ASSERT_EQ(instance.getBalance(), 30);
 
   instance.coin(20);
@@ -93,7 +93,7 @@ TEST_F(AutomataTest, cook_and_finish)
   instance.on();
   instance.coin(60);
   instance.choice(3);
-  ASSERT_EQ(instance.check(), 60);
+  ASSERT_TRUE(instance.check());
   ASSERT_EQ(instance.getState(), STATES::READY);
   instance.cook();
   ASSERT_EQ(instance.getBalance(), 10);
