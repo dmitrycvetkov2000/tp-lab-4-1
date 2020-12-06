@@ -38,7 +38,7 @@ void Automata::off()
 
 void Automata::coin(const unsigned int amount)
 {
-  if (state == STATES::ACCEPT || state == STATES::WAIT)
+  if (state == STATES::ACCEPT || state == STATES::WAIT || state == STATES::CHECK)
   {
     state = STATES::ACCEPT;
     cash += amount;
